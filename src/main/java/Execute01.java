@@ -16,7 +16,7 @@ public class Execute01 {
 
         //4. Adım: Query çalıştır.
 
-        /*
+         /*
         execute() methodu DDL(create, drop, alter table) ve DQL(select) için kullanılabilir.
         1) Eğer execute() methodu DDL için kullanılırsa 'false' return yapar.
         2) Eğer execute() methodu DQL için kullanılırsa ResultSet alındığında 'true' aksi halde 'false' verir.
@@ -41,7 +41,6 @@ public class Execute01 {
         //5. Adım: Bağlantı ve Statement'ı kapat.
         con.close();
         st.close();
-
 
     }
 }

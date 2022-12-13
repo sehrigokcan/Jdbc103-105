@@ -61,6 +61,8 @@ public class JdbcUtils {
         return isExecute;
     }
 
+
+
     //5. Adım: Bağlantı ve Statement'ı kapat.
     public static void closeConnectionAndStatement(){
 
@@ -83,10 +85,26 @@ public class JdbcUtils {
 
     }
 
+    //Table oluşturan method
+    public static void createTable(String tableName, String... columnName_dataType ){
+        StringBuilder columnName_dataValue = new StringBuilder("");
 
+        for(String w : columnName_dataType){
 
+            columnName_dataValue.append(w).append(",");
 
+        }
 
+        columnName_dataValue.deleteCharAt(columnName_dataValue.length()-1);
+
+        try {
+            statement.execute( "CREATE TABLE "+tableName+"("+columnName_dataValue+")");
+            System.out.println("Table "+tableName+" successfully created!");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    //Ödev: ExecuteQuery, ExecuteUpdate, Table'a Değer giren,  Sütun Değerlerini List içerisine alan methodları oluşturunuz.
 
 
 

@@ -14,27 +14,11 @@ public class Runner {
         //4. Adım: Query çalıştır.
         //JdbcUtils.execute("CREATE TABLE students (name VARCHAR(20), id INT, address VARCHAR(80))");
 
-        //5. Adım: Bağlantı ve Statement'ı kapat.
+        JdbcUtils.createTable("def","classes VARCHAR(20)","teacher_name VARCHAR(20)","id INT");
 
+        //5. Adım: Bağlantı ve Statement'ı kapat.
         JdbcUtils.closeConnectionAndStatement();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 
 }
