@@ -45,11 +45,7 @@ public class JdbcUtils {
             throw new RuntimeException(e);
         }
 
-
         return statement;
     }
-
-
-
 
 }
