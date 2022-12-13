@@ -11,7 +11,7 @@ public class JdbcUtils {
 
     //1. Adım: Driver'a kaydol
     //2. Adım: Datbase'e bağlan
-    public static Connection connectToDataBase()  {
+    public static Connection connectToDataBase(String hostName, String dbName,String username, String password)  {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -21,7 +21,7 @@ public class JdbcUtils {
 
 
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","1234");
+            connection = DriverManager.getConnection("jdbc:postgresql://"+hostName+":5432/"+dbName,username,password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -45,7 +45,49 @@ public class JdbcUtils {
             throw new RuntimeException(e);
         }
 
+
         return statement;
     }
+
+    //4. Adım: Query çalıştır.
+    public static boolean execute(String sql){
+        boolean isExecute;
+        try {
+            isExecute = statement.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return isExecute;
+    }
+
+    //5. Adım: Bağlantı ve Statement'ı kapat.
+    public static void closeConnectionAndStatement(){
+
+        try {
+            connection.close();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            if(connection.isClosed()&&statement.isClosed()){
+                System.out.println("Connection and statement closed!");
+
+            }else {
+                System.out.println("Connection and statement NOT closed!");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
+
+
+
+
 
 }
